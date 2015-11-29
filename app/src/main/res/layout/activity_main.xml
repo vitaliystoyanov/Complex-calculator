@@ -1,34 +1,454 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.stoyanov.developer.complexcalculator.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:onClick="onClickButtonNumber">
 
-    <android.support.design.widget.AppBarLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/backgroundInputLayer"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:id="@+id/input"
+            android:textColor="@color/textEnter"
+            android:textCursorDrawable="@drawable/input_cursor"
+            android:layout_weight="0.2"
+            android:textSize="@dimen/text_input"
+            android:padding="10dp"
+            android:gravity="center_vertical|right"
+            android:background="@android:color/transparent" />
 
-    </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/result"
+            android:textColor="@color/textEnter"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="true"
+            android:gravity="right"
+            android:layout_weight="1.5"
+            android:textSize="@dimen/text_result"
+            android:paddingRight="10dp" />
 
-    <include layout="@layout/content_main" />
+    </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+    <com.andexert.library.RippleView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        app:rv_ripplePadding="10dp" >
 
-</android.support.design.widget.CoordinatorLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="5"
+        android:rowCount="5" android:drawSelectorOnTop="true" >
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/about"
+            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+            android:longClickable="false"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="center|fill"
+            android:background="@color/buttonsOperationBackgroundTop"
+            android:padding="@dimen/button_operation_all_padding"
+            app:iiv_icon="gmd-info-outline"
+            app:iiv_size="@dimen/button_operation_icon_size"
+            app:iiv_color="@color/buttonsOperation"
+            android:onClick="onClickButtonAdditional" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history"
+            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="center|fill"
+            android:background="@color/buttonsOperationBackgroundTop"
+            android:padding="@dimen/button_operation_all_padding"
+            app:iiv_icon="gmd-time-restore"
+            app:iiv_size="@dimen/button_operation_icon_size"
+            app:iiv_color="@color/buttonsOperation"
+            android:onClick="onClickButtonAdditional" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/emptyImageview"
+            android:layout_gravity="center|fill"
+            android:background="@color/buttonsOperationBackgroundTop"
+            android:padding="@dimen/button_operation_all_padding" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clear"
+            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_gravity="center|fill"
+            android:background="@color/buttonsOperationBackgroundTop"
+            android:padding="@dimen/button_operation_all_padding"
+            app:iiv_icon="gmd-close"
+            app:iiv_size="@dimen/button_operation_icon_size"
+            app:iiv_color="@color/buttonsOperation"
+            android:onClick="onClickButtonAdditional" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete"
+            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+            android:layout_row="0"
+            android:layout_column="4"
+            android:layout_gravity="center|fill"
+            android:background="@color/buttonsOperationBackgroundTop"
+            android:padding="@dimen/button_operation_all_padding"
+            app:iiv_icon="gmd-arrow-back"
+            app:iiv_size="@dimen/button_operation_icon_size"
+            app:iiv_color="@color/buttonsOperation"
+            android:onClick="onClickButtonAdditional" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="i"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:textSize="@dimen/text_button"
+            android:id="@+id/complex_expression"
+            android:gravity="center"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="("
+            android:id="@+id/bracket_left"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text=")"
+            android:id="@+id/bracket_right"
+            android:layout_row="3"
+            android:layout_column="3"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="^"
+            android:id="@+id/power"
+            android:layout_column="3"
+            android:layout_row="4"
+            android:singleLine="true"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="7"
+            android:id="@+id/number7"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:layout_gravity="fill"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="4"
+            android:id="@+id/number4"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="1"
+            android:id="@+id/number1"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="."
+            android:id="@+id/dot"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonOperation" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="8"
+            android:id="@+id/number8"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="5"
+            android:id="@+id/number5"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="2"
+            android:id="@+id/number2"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/number0"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="9"
+            android:id="@+id/number9"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="6"
+            android:id="@+id/number6"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="3"
+            android:id="@+id/number3"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="="
+            android:id="@+id/equally"
+            android:layout_column="2"
+            android:layout_row="4"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonOperation" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="/"
+            android:id="@+id/division"
+            android:layout_column="4"
+            android:layout_row="1"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="*"
+            android:id="@+id/multiplication"
+            android:layout_row="2"
+            android:layout_column="4"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="-"
+            android:id="@+id/subtraction"
+            android:layout_column="4"
+            android:layout_row="3"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:gravity="center"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addition"
+            android:layout_column="4"
+            android:layout_row="4"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center|fill"
+            android:textSize="@dimen/text_button"
+            android:typeface="normal"
+            android:text="+"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClickButtonOperation"
+            android:background="@color/buttonsOperationBackgroundSide" />
+    </GridLayout>
+    </com.andexert.library.RippleView>
+</LinearLayout>
