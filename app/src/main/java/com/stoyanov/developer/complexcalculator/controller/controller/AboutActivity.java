@@ -1,4 +1,4 @@
-package com.stoyanov.developer.complexcalculator.controller;
+package com.stoyanov.developer.complexcalculator.controller.controller;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.ViewTreeObserver;
 
 import com.stoyanov.developer.complexcalculator.R;
+import com.stoyanov.developer.complexcalculator.controller.view.RevealBackgroundView;
 
 public class AboutActivity extends AppCompatActivity implements RevealBackgroundView.OnStateChangeListener {
 

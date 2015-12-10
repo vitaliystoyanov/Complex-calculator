@@ -1,4 +1,4 @@
-package com.stoyanov.developer.complexcalculator.controller;
+package com.stoyanov.developer.complexcalculator.controller.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

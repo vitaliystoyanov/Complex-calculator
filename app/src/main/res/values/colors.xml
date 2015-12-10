@@ -9,8 +9,12 @@
     <color name="textButton">#000000</color>
     <color name="textEnter">#fff</color>
     <color name="textResult">#fff</color>
+    <color name="textAdditionButtons">#fff</color>
+    <color name="cursorColor">#fff</color>
 
     <color name="buttonsOperation">#fff</color>
     <color name="buttonsOperationBackgroundTop">@color/backgroundInputLayer</color>
-    <color name="buttonsOperationBackgroundSide">#13000000</color>
+    <color name="buttonsOperationBackgroundSide">#0c000000</color>
+    <color name="drawerBackground">#C51162</color>
+
 </resources>

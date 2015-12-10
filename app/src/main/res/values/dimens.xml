@@ -3,12 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-
-    <dimen name="text_button">28sp</dimen>
+    <dimen name="text_buttons">21sp</dimen>
     <dimen name="text_result">18sp</dimen>
     <dimen name="text_input">32sp</dimen>
+    <dimen name="cursor_width">2dp</dimen>
 
     <dimen name="button_operation_all_padding">15dp</dimen>
-    <dimen name="button_operation_icon_size">18dp</dimen>
+    <dimen name="button_operation_right_icon_size">15dp</dimen>
+    <dimen name="button_operation_left_icon_size">18dp</dimen>
 
 </resources>
